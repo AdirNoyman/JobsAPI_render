@@ -8,7 +8,7 @@ const helmet = require('helmet');
 // CORS is a node.js package for providing a Connect/Express middleware that can be used to enable CORS with various options.
 const cors = require('cors');
 // Sanitize untrusted HTML (to prevent XSS) with a configuration specified by a Whitelist
-const xss = require('xss');
+const xss = require('xss-clean');
 // Basic rate-limiting middleware for Express. Use to limit repeated requests to public APIs and/or endpoints such as password reset
 const rateLimiter = require('express-rate-limit');
 

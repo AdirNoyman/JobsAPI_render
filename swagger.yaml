@@ -1,0 +1,199 @@
+openapi: 3.0.0
+info:
+  title: Jobs API
+  contact: {}
+  version: '1.0'
+servers:
+- url: https://jobs-api-5000.herokuapp.com/api/v1
+  variables: {}
+paths:
+  /auth/register:
+    post:
+      tags:
+      - Auth
+      summary: Register User
+      operationId: RegisterUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/RegisterUserRequest'
+              - example:
+                  name: Adiros Gadolos 3
+                  email: koko7@gnail.com
+                  password: koko12345
+            example:
+              name: Adiros Gadolos 3
+              email: koko7@gnail.com
+              password: koko12345
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /auth/login:
+    post:
+      tags:
+      - Auth
+      summary: Login
+      operationId: Login
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/RegisterUserRequest'
+              - example:
+                  email: koko7@gnail.com
+                  password: koko12345
+            example:
+              email: koko7@gnail.com
+              password: koko12345
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /jobs:
+    get:
+      tags:
+      - Jobs
+      summary: getAllJobs
+      operationId: getAllJobs
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+    post:
+      tags:
+      - Jobs
+      summary: createJob
+      operationId: createJob
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/createJobRequest'
+              - example:
+                  company: Apple
+                  position: IOS Developer
+            example:
+              company: Apple
+              position: IOS Developer
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /jobs/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The job ID
+    get:
+      tags:
+      - Jobs
+      summary: getSingleJob
+      operationId: getSingleJob
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+    patch:
+      tags:
+      - Jobs
+      summary: updateJob
+      operationId: updateJob
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  
+    delete:
+      tags:
+      - Jobs
+      summary: deleteJob
+      operationId: deleteJob
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+components:
+  schemas:
+    RegisterUserRequest:
+      title: RegisterUserRequest
+      required:
+      - name
+      - email
+      - password
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        name: Adiros Gadolos 3
+        email: koko7@gnail.com
+        password: koko12345
+    createJobRequest:
+      title: createJobRequest
+      required:
+      - company
+      - position
+      type: object
+      properties:
+        company:
+          type: string
+        position:
+          type: string
+      example:
+        company: Apple
+        position: IOS Developer
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+security: []
+tags:
+
+- name: Auth
+  description: ''
+- name: Jobs
+  description: ''
